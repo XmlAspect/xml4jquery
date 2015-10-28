@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Xml4jQuery</title>
+    <style>
+        fieldset{  border:none;     margin: 1em 0;      padding: 0;}
+        legend{ font-size: 120%;  font-weight: bold;     padding: 1em 0 .5em 0; }
+        pre, code, tt, kbd, samp, .mw-code { font-family: monospace,Courier; }
+        code {  background-color: #f9f9f9;  }
+
+        .mw-code {
+            padding: 1em;
+            color: black;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+        .javascript.source-javascript .de1, .javascript.source-javascript .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;font-family: monospace, monospace;}
+        .javascript.source-javascript  {font-family:monospace;}
+        .javascript.source-javascript .imp {font-weight: bold; color: red;}
+        .javascript.source-javascript li, .javascript.source-javascript .li1 {font-weight: normal; vertical-align:top;}
+        .javascript.source-javascript .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+        .javascript.source-javascript .li2 {font-weight: bold; vertical-align:top;}
+        .javascript.source-javascript .kw1 {color: #000066; font-weight: bold;}
+        .javascript.source-javascript .kw2 {color: #003366; font-weight: bold;}
+        .javascript.source-javascript .kw3 {color: #000066;}
+        .javascript.source-javascript .kw5 {color: #FF0000;}
+        .javascript.source-javascript .co1 {color: #006600; font-style: italic;}
+        .javascript.source-javascript .co2 {color: #009966; font-style: italic;}
+        .javascript.source-javascript .coMULTI {color: #006600; font-style: italic;}
+        .javascript.source-javascript .es0 {color: #000099; font-weight: bold;}
+        .javascript.source-javascript .br0 {color: #009900;}
+        .javascript.source-javascript .sy0 {color: #339933;}
+        .javascript.source-javascript .st0 {color: #3366CC;}
+        .javascript.source-javascript .nu0 {color: #CC0000;}
+        .javascript.source-javascript .me1 {color: #660066;}
+        .javascript.source-javascript .ln-xtra, .javascript.source-javascript li.ln-xtra, .javascript.source-javascript div.ln-xtra {background-color: #ffc;}
+        .javascript.source-javascript span.xtra { display:block; }
+    </style>
+</head>
+<body>
+    <h1>Xml4jQuery</h1>
+    <p>Is a jQuery reactive plugin to supply XML, XPath and XSLT functionality.</p>
+    <div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="javascript source-javascript"><pre class="de1">$<span class="br0">(</span><span class="st0">".toFill"</span><span class="br0">)</span>.<span class="me1">xmlTransform</span><span class="br0">(</span> $.<span class="me1">Xml</span><span class="br0">(</span>dataUrl<span class="br0">)</span>.<span class="me1">XPath</span><span class="br0">(</span><span class="st0">"//book[@genre='romance']"</span><span class="br0">)</span><span class="sy0">,</span> $.<span class="me1">Xml</span><span class="br0">(</span>xslUrl<span class="br0">)</span> <span class="br0">)</span><span class="sy0">;</span></pre></div></div>
+    Look up the <a href="test/test.html">test</a> sources for different use case.
+
+    <fieldset>
+        <legend>Including into project </legend>
+        <code>xml4jquery.js</code> is distributed as <b>npm</b> module and is available on CDNJS.
+    </fieldset>
+    <fieldset>
+        <legend>Licensing</legend>
+        It is a free to use and distribute binary library. The license agreement is embedded into
+        <code>xml4jquery.js</code> file. If you are seeking for sources, it is easier to get open sourced AMD libraries
+        also supported by <a href="XmlAspect.org">XmlAspect.org</a><br/>
+        Commercial licence available upon request to
+        <a href="mailto:support@simulationworks.com?subject=xml4jquery commercial licence">support@simulationworks.com</a>.
+    </fieldset>
+    <fieldset>
+        <legend>Support</legend>
+        <b><a href="https://groups.google.com/d/forum/xml4jquery">Mail list</a></b> hosted by google groups<br/>
+        <b>ApiFusion tree</b> TBD<br/>
+        <b>Bug report</b> within bitbucket? TBD<br/>
+        <b>Commercial</b> support provided by Simulation Works, LLC in USA time zone<br/>
+
+    </fieldset>
+<hr/>
+<copy>Made in USA for free world. Copyright &copy; Simulation Works, LLC 2014-2016</copy>
+</body>
+</html>
