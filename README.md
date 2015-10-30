@@ -3,7 +3,8 @@
 **jQuery reactive plugin to supply XML, XPath and XSLT functionality.**
 
 ```js
-$(".toFill").xmlTransform( $.Xml(dataUrl).XPath("//book[@genre='romance']"), $.Xml(xslUrl) );
+$(".toFill")
+  .xmlTransform( $.Xml(dataUrl).XPath("//book[@genre='romance']"), $.Xml(xslUrl) );
 ```
     
 For details refer to primary project page <a href="http://xml4jquery.com">xml4jquery.com</a>
@@ -22,4 +23,5 @@ Commercial licence available upon request to
 
 ##Support
 
-<b><a href="https://groups.google.com/d/forum/xml4jquery">Mail list</a></b> hosted by google groups; see on project page for more options.
+<b><a href="https://groups.google.com/d/forum/xml4jquery">Mail list</a></b> hosted by google groups; see the project page
+for more options.

@@ -1,6 +1,6 @@
 {
   "name": "xml4jquery",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Reactive jQuery plugin to supply XML, XPath and XSLT functionality within browser.",
   "main": "xml4jquery.js",
   "directories": {
