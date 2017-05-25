@@ -1,14 +1,11 @@
 {
   "name": "xml4jquery",
-  "version": "1.0.7",
-  "description": "Reactive jQuery plugin to supply XML, XPath and XSLT functionality within browser.",
+  "version": "1.1.0",
+  "description": "jQuery reactive plugin to supply XML, XPath and XSLT functionality.",
   "main": "xml4jquery.js",
   "directories": {
     "test": "test"
   },
-  "dependencies": {    
-  },
-  "devDependencies": {"intern": "^2.2.2"},
   "scripts": {
     "test": "echo \"OK. No CI available yet. Manual in-browser test available from project page.\" && exit 0"
   },
@@ -20,19 +17,24 @@
     "xml",
     "xslt",
     "xpath",
-    "jquery",
     "reactive",
-    "json"
+    "jQuery"
   ],
   "author": {
     "name": "Sasha Firsov",
     "email": "suns@simulationworks.com",
     "url": "http://xml4jquery.com/"
   },
-
   "license": "xml4jquery.js",
   "bugs": {
     "url": "https://github.com/XmlAspect/xml4jquery/issues"
   },
-  "homepage": "https://github.com/XmlAspect/xml4jquery"
+  "homepage": "http://xml4jquery.com/",
+  "devDependencies": {
+    "babel-polyfill": "^6.23.0",
+    "google-closure-compiler": "~20170423.0.0",
+    "intern": "^3.0.3",
+    "jquery": "^3.2.1",
+    "types": "~0.1.1"
+  }
 }

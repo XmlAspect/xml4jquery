@@ -3,20 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>Xml4jQuery plugin test</title>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <style>
+        table, input[type=text],td{ width:100%;}
+        td{ width:80%; padding: 0.5em 0; }
+        code{background-color: silver; padding: 0 0.5em;}
+        .copy{float: right;}
+    </style>
 </head>
 <body>
 <h1>Xml4jQuery plugin test</h1>
-<p><a href="../../../intern/client.html?initialBaseUrl=/ajax/libs/xml4jquery/1.0.7&config=test/intern&timeout=1000">intern test</a>
-    assumes the <code>intern</code> folder (with same content as npm install) placed as sibling to <code>xml4jquery</code> folder.
-</p>
-<p><a href="../../node_modules/intern/client.html?config=src/test/intern&suites=src/test/test">local test</a>
-    uses internal intern instance ( made as <code>node_modules/intern</code> by <code>npm install intern</code>
-    within Xml4jQuery.
-</p>
+<form method="get"
+      action="../node_modules/intern/client.html" ><!-- defaults for CDN convention
+        http://cdn.xml4jquery.com/ajax/libs/intern/client.html
+        https://cdn.xml4jquery.com/ajax/libs/xml4jquery/1.0.7/
+        -->
+    <table>
+        <tr><th><input type="submit" value="RUN TEST" /></th></tr>
+        <tr><th>base URL    </th><td><input name="initialBaseUrl" value="."         type="text" title="URL to JS files folder with test/ inside"        /></td></tr>
+        <tr><th>config      </th><td><input name="config"   value="test/intern" type="text" title="test suites config for intern"                       /></td></tr>
+        <tr><th>suites CSV  </th><td><input name="suite"
+                                            value="test/test,test/test-chaining,test/test-xml,test/test-jquery,test/test-event,test/test-fork"
+                                                                                    type="text" title="comma separated list of MID for test modules"    /></td></tr>
+        <tr><th>timeout     </th><td><input name="timeout"  value="1000"            type="text" title="timeout in milliseconds"/>
+                                    <a class="js-link" href="intern.js">intern.js</a> accepts <code>timeout</code>
+                                    URL parameter in milliseconds to test against
+                                    low-bandwidth connection.
+                                </td></tr>
+        <tr><th></th><td>   <b>node_modules/intern</b> instantiated by
+                                        <code>npm install</code> <u>within</u> Xml4jQuery revision folder.
+                                </td></tr>
+    </table>
+</form>
 
-<p><a href="test.js">test.js</a> accepts additional <code>timeout</code> URL parameter in milliseconds to test against
-    low-bandwidth connection. (defaults to .5 seconds)</p>
 
-
+<script>
+$(function()
+{
+    $('input[name=initialBaseUrl]').val( location.pathname+'/../../' );
+    $('.local-intern').click( function()
+        { $('form').prop('action',location.pathname+'/../../../intern/client.html'); });
+});
+</script>
+<footer class="copy">Made in USA. Copyright &copy; Simulation Works, LLC 2014-2017</footer>
 </body>
 </html>

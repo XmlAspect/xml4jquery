@@ -6,13 +6,14 @@
     <style>
         fieldset{  border:none;     margin: 1em 0;      padding: 0;}
         legend{ font-size: 120%;  font-weight: bold;     padding: 1em 0 .5em 0; }
-        pre, code, tt, kbd, samp{ font-family: monospace,Courier; }
+        pre, code, tt, kbd, samp { font-family: monospace,Courier; }
         pre{display: block; background-color: black;}
         .copy{float: right;}
-
+        .toFill{border: dashed 2px palegreen; border-radius: 1em; display: inline-block;padding: 1em;}
+        .clickable{ cursor: pointer; border-color: blue;}
+        pre a {color: #FF0;}
     </style>
     <style type="text/css">
-        .ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
         .s0 { color: rgb(169,183,198); }
         .s1 { color: rgb(232,191,106); }
         .s2 { color: rgb(186,186,186); }
@@ -21,22 +22,41 @@
         .s5 { color: rgb(204,120,50); }
         .s6 { color: rgb(109,156,190); }
     </style>
-
-    <script type="text/javascript" src="https://cdn.xml4jquery.com/ajax/libs/xml4jquery/1.0.7/xml4jquery.js"></script>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="xml4jquery.js"></script>
 
     <script>
-        $(".toFill").xmlTransform( $.Xml(dataUrl).XPath("//book[@genre='romance']"), $.Xml(xslUrl) );
+        $(function () {
+            $(".toFill").html("Click here")
+                .$on('click')
+                .html('Loading...')
+                .sleep(1000)
+                .xmlTransform( 'test/test.xml', 'test/test.xsl')
+                .toggleClass('clickable')
+                .prepend("Still clickable <hr/>");
+        });
     </script>
 </head>
 <body>
     <h1>Xml4jQuery</h1>
-    <p>Is a jQuery reactive plugin to supply XML, XPath and XSLT functionality.</p>
+    <p>Is a jQuery plugin exposed via reactive API to supply asynchronous execution and XML, XPath and XSLT functionality.<br/>
+        It brings declarative programming as an alternative to closure-based event handling.
+    </p>
 
-<pre><code>
-<span class="s0">   $(</span><span class="s4">&quot;.toFill&quot;</span><span class="s0">).xmlTransform( $.Xml(dataUrl).XPath(</span><span class="s4">&quot;//book[@genre='romance']&quot;</span><span class="s0">)</span><span class="s5">, </span><span class="s0">$.Xml(xslUrl) )</span><span class="s5">;</span><span class="s0">
-    </span>
-</code></pre>
-    Look up the <a href="test/test.html">test</a> sources for different use case.
+    <pre><code><span class="s0">
+            $(</span><span class="s1">&quot;.toFill&quot;</span><span class="s0">).html(</span><span class="s1">&quot;Click here&quot;</span><span class="s0">)
+                .$on(</span><span class="s1">'click'</span><span class="s0">)
+                .html(</span><span class="s1">'Loading...'</span><span class="s0">)
+                .sleep(</span><span class="s2">1000</span><span class="s0">)
+                .xmlTransform( </span><span class="s1">'<a
+                        href="test/test.xml">test/test.xml</a>'</span><span class="s3">, </span><span class="s1">'<a
+                        href="test/test.xsl">test/test.xsl</a>'</span><span class="s0">)
+                .toggleClass(</span><span class="s1">'clickable'</span><span class="s0">)</span><span class="s0">
+                .prepend(</span><span class="s1">'Still clickable &lt;hr/&gt;'</span><span class="s0">)</span><span class="s3">;</span>
+    </code></pre>
+    Look up the <a href="https://www.apifusion.com/wiki/index.php/XmlAspect.org/Xml4jQuery"><b>documentation</b></a>
+    for details and more use samples;
+    validate your supported browsers by running <a href="test/test.html">test</a>.
 
     <fieldset>
         <legend>Including into project </legend>
@@ -50,20 +70,26 @@
     <fieldset>
         <legend>Licensing</legend>
         It is a free to use and distribute binary library. The license agreement is embedded into
-        <code>xml4jquery.js</code> file. If you are seeking for sources, it is easier to get open sourced AMD libraries
-        also supported by <a href="http://XmlAspect.org">XmlAspect.org</a><br/>
-        Commercial licence is available upon request to
-        <a href="mailto:support@simulationworks.com?subject=xml4jquery commercial licence">support@simulationworks.com</a>.
+        <code>xml4jquery.js</code> file.
+        <p> If you are seeking for sources, it is easier to get open sourced AMD libraries
+            from <a href="https://github.com/amdharness/AmdHarness-amd-xml">AmdHarness-amd-xml</a></p>
+        <p> Commercial licence is available upon request to
+            <a href="mailto:support@simulationworks.com?subject=xml4jquery commercial licence">support@simulationworks.com</a>.</p>
     </fieldset>
     <fieldset>
         <legend>Support</legend>
         <b><a href="https://groups.google.com/d/forum/xml4jquery">Mail list</a></b> hosted by google groups<br/>
-        <b><a href="http://apifusion.com/wiki/index.php?title=XmlAspect.org/Xml4jQuery" >ApiFusion</a></b><br/>
+        <b><a href="https://www.apifusion.com/wiki/index.php?title=XmlAspect.org/Xml4jQuery" >ApiFusion</a></b>
+                hosts all other aspects: documentation, wish list, public support, etc.  <br/>
         <b>Bug report</b> is hosted on <a href="https://github.com/XmlAspect/xml4jquery">github</a> <br/>
-        <b>Commercial</b> support is provided by Simulation Works, LLC in USA time zone<br/>
+        <b>Commercial</b> support is provided by <a href="http://simulationworks.com">Simulation Works, LLC</a> in USA time zone<br/>
 
     </fieldset>
+    <fieldset>
+        <legend>Sample of rendered output by the code above</legend>
+        <div class="toFill clickable"></div>
+    </fieldset>
 <hr/>
-<div class="copy">Made in USA. Copyright &copy; Simulation Works, LLC 2014-2016</div>
+<footer class="copy">Made in USA. Copyright &copy; Simulation Works, LLC 2014-2017</footer>
 </body>
 </html>

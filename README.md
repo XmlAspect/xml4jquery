@@ -3,8 +3,13 @@
 **jQuery reactive plugin to supply XML, XPath and XSLT functionality.**
 
 ```js
-$(".toFill")
-  .xmlTransform( $.Xml(dataUrl).XPath("//book[@genre='romance']"), $.Xml(xslUrl) );
+$(".toFill").html("Click here")
+                .$on('click')
+                .html('Loading...')
+                .sleep(1000)
+                .xmlTransform( 'test/test.xml', 'test/test.xsl')
+                .toggleClass('clickable')
+                .prepend("Still clickable <hr/>");
 ```
     
 For details refer to primary project page <a href="http://xml4jquery.com">xml4jquery.com</a>
