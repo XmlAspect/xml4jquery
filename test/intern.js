@@ -1,10 +1,10 @@
 // Learn more about configuring this file at <https://theintern.github.io/intern/#configuration>.
 // These default settings work OK for most people. The options that *must* be changed below are the
 // packages, suites, excludeInstrumentation, and (if you want functional tests) functionalSuites
-var xml4jQuery_deps = ["../node_modules/jquery/dist/jquery.js"];
-if( !window.Promise )
+var xml4jQuery_deps = ["../node_modules/jquery/dist/jquery.js"]
+,   xml4jQuery_IE = !window.Promise;
+if( xml4jQuery_IE )
 	xml4jQuery_deps.push("../node_modules/babel-polyfill/dist/polyfill.min.js");
-var xml4jQuery_tests = ( getUrlParameter('suite') || "test/test" ).split(',');
 define(xml4jQuery_deps,function()
 {
 	var conf =
@@ -44,37 +44,64 @@ define(xml4jQuery_deps,function()
         // can be used here.
         // If you want to use a different loader than the default loader, see
         // <https://theintern.github.io/intern/#option-useLoader> for instruction
-        loader: {
+
+        loader:
+        {
         // Packages that should be registered with the loader in each testing environment
 		//		packages: [ //{ name: 'myPackage', location: '.' }
 		//				{ name: 'xml', location: "lib/AMD/xml/xml"}
 		//			]
 		//	,
-				map:
-				{'*':{ 	xml: "lib/AMD/xml/xml_ie"
-					, 	xml4jquery:"xml4jquery"
-					,	assert:"test/assert"
-				}}
-			},
+                  map:  {'*':{ 	xml: "lib/AMD/xml/xml_ie"
+                            , 	xml4jquery:"xml4jquery"
+                            ,	assert:"test/assert"
+                        }}
+            ,   paths:  {   es6     : 'test/es6'
+                        ,   babel   : 'test/babel-5.8.34.min.js'
+                        }
+            ,     es6:  {   fileExtension: '.js' // put in .jsx for JSX transformation
+                        }
+            ,   babel:  {   blacklist: [],
+                            nonStandard: true,
+                            modules: 'ignore'
+                        }
+        },
 
         // Non-functional test suite(s) to run in each browser
-        suites: xml4jQuery_tests,
+        suites: depList( getUrlParameter('suite') || "test/test" ),
 
-            // Functional test suite(s) to execute against each browser once non-functional tests are completed
-            functionalSuites: [  ],
+        // Functional test suite(s) to execute against each browser once non-functional tests are completed
+        functionalSuites: [  ],
 
         // A regular expression matching URLs to files that should not be included in code coverage analysis
         excludeInstrumentation: /^(?:tests|node_modules)\//
     };
+	if( getUrlParameter('transpiler') )
+    {   conf.loaders = { 'host-node': 'requirejs', 'host-browser': 'node_modules/requirejs/require.js' };
+        conf.suites = conf.suites.map( function( el ){ return 'es6!'+el} );
+    }
     return conf;
-});
-function getUrlParameter(param) {
-    var urlVars = decodeURIComponent(window.location.search.substring(1)).split('&');
-    var paramName;
-    for(var i = 0; i < urlVars.length; i++) {
-        paramName = urlVars[i].split('=');
-        if(paramName[0] === param) {
-            return paramName[1] === undefined ? true : paramName[1];
+
+        function
+    depList()
+    {
+        var ret = [];
+        for( var i=0; i< arguments.length; i++ )
+        {   var el = arguments[i];
+            if( 'string' === typeof el )
+                ret = ret.concat( el.split(',') );
+            else
+                ret = ret.concat( el );
         }
+        return ret;
+    }
+});
+function getUrlParameter( param )
+{   var urlVars = decodeURIComponent(window.location.search.substring(1)).split('&');
+    var paramName;
+    for(var i = 0; i < urlVars.length; i++)
+    {   paramName = urlVars[i].split('=');
+        if( paramName[0] === param)
+            return paramName[1] === undefined ? true : paramName[1];
     }
 }

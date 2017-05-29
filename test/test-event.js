@@ -8,7 +8,7 @@
  *
  *********************************************************************/
 define  ( ["require", 'intern!object', 'assert', 'xml4jquery' ]
-        , ( require , registerSuite  ,  assert ) =>
+        , function( require , registerSuite  ,  assert )
 {
     "use strict";
     let $ = jQuery;
@@ -46,15 +46,15 @@ define  ( ["require", 'intern!object', 'assert', 'xml4jquery' ]
         {
             let counter = 0
             ,   $el     = $("<a></a>");
-            $el.$on( 'click' ).$then( ev => console.log( counter++ ) && assert( 'click' === ev.type ) );
+            $el.$on( 'click' ).$then( function(ev){ console.log( counter++ ) && assert( 'click' === ev.type ) });
             return $el
                     .sleep( 10 ) // wait for click handler initialized asynchronously
                     .click()
                     .sleep( 10 ) // wait for click handler run asynchronously
-                    .$then( ()=>assert( 1 === counter ) )
+                    .$then( function(){ assert( 1 === counter ) })
                     .click()
                     .sleep( 10 )
-                    .$then( ()=>assert( 2 === counter ) );
+                    .$then( function(){ assert( 2 === counter )} );
 
         /*
             let $submitChain = $('form').$on('submit,keypress[keycode=13 or keycode=32 or which=13 or which=32])');
