@@ -1,7 +1,7 @@
 // Learn more about configuring this file at <https://theintern.github.io/intern/#configuration>.
 // These default settings work OK for most people. The options that *must* be changed below are the
 // packages, suites, excludeInstrumentation, and (if you want functional tests) functionalSuites
-var xml4jQuery_deps = ["../node_modules/jquery/dist/jquery.js"]
+var xml4jQuery_deps = [getUrlParameter('jquery')]
 ,   xml4jQuery_IE = !window.Promise;
 if( xml4jQuery_IE )
 	xml4jQuery_deps.push("../node_modules/babel-polyfill/dist/polyfill.min.js");
@@ -78,7 +78,7 @@ define(xml4jQuery_deps,function()
     };
 	if( getUrlParameter('transpiler') )
     {   conf.loaders = { 'host-node': 'requirejs', 'host-browser': 'node_modules/requirejs/require.js' };
-        conf.suites = conf.suites.map( function( el ){ return 'es6!'+el} );
+        conf.suites = conf.suites.map( function( el ){ return el==='test/test-event' ? el: 'es6!'+el} );
     }
     return conf;
 
@@ -97,11 +97,11 @@ define(xml4jQuery_deps,function()
     }
 });
 function getUrlParameter( param )
-{   var urlVars = decodeURIComponent(window.location.search.substring(1)).split('&');
+{   var urlVars = window.location.search.substring(1).split('&');
     var paramName;
     for(var i = 0; i < urlVars.length; i++)
-    {   paramName = urlVars[i].split('=');
+    {   paramName = urlVars[i].split('=') ;
         if( paramName[0] === param)
-            return paramName[1] === undefined ? true : paramName[1];
+            return paramName[1] === undefined ? true : decodeURIComponent( paramName[1] );
     }
 }

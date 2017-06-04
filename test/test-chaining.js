@@ -85,6 +85,14 @@ define  ( ["require", 'intern!object', 'test/assert', 'xml4jquery' ]
                                 assert( 1  === a4 );
                             }, err );
                 }
+            ,   "$.$then( thow err).$then() gives failed Promise": ()=>
+                {
+                    return new Promise( function( resolve, reject )
+                    {
+                        let failedPr = $.$then( ()=>{ throw 1 } ).$then( reject );
+                        Promise.all([failedPr]).then( reject, resolve );
+                    })
+                }
             }
 
         ,   "$then chaining":
@@ -247,13 +255,15 @@ define  ( ["require", 'intern!object', 'test/assert', 'xml4jquery' ]
                 return  $()
                         .sleep( 20, function()
                         {   c = 11;
-                            assert( (new Date()).getTime() - t0 >= 20 );                            
+                            let t1 = new Date().getTime();
+                            assert( t1 - t0 >= 20 );
                             return 20;
                         })
                         .$then( function( a0 )
                         {   assert( c === 11 );
                             assert( a0 === 20 );
-                            assert( (new Date()).getTime() - t0 >= 20 );
+                            let t1 = new Date().getTime();
+                            assert( t1 - t0 >= 20 );
                             c=22;
                             return 30;
                         },  err )

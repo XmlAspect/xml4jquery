@@ -16,29 +16,39 @@
 <body>
 <h1>Xml4jQuery plugin test</h1>
 <form method="get"
-      action="../node_modules/intern/client.html" ><!-- defaults for CDN convention
-        http://cdn.xml4jquery.com/ajax/libs/intern/client.html
-        https://cdn.xml4jquery.com/ajax/libs/xml4jquery/1.0.7/
-        -->
+      action="../node_modules/intern/client.html" >
     <table>
         <tr><th><input type="submit" value="RUN TEST" /></th></tr>
         <tr><th>base URL    </th><td><input name="initialBaseUrl"   value="."         type="text"       title="URL to JS files folder with test/ inside"        /></td></tr>
         <tr><th>config      </th><td><input name="config"           value="test/intern" type="text"     title="test suites config for intern"                   /></td></tr>
         <tr><th>suites CSV  </th><td><input name="suite"
-                                            value="test/test,test/test-chaining,test/test-xml,test/test-jquery,test/test-event,test/test-fork"
+                                            value="test/test,test/test-chaining,test/test-xml,test/test-string,test/test-jquery,test/test-event,test/test-fork"
                                                                                     type="text" title="comma separated list of MID for test modules"    /></td></tr>
         <tr><th>timeout     </th><td><input name="timeout"  value="1000"            type="text" title="timeout in milliseconds"/>
                                     <a class="js-link" href="intern.js">intern.js</a> accepts <code>timeout</code>
                                     URL parameter in milliseconds to test against
                                     low-bandwidth connection.
                                 </td></tr>
+        <tr><th>jQuery revision     </th>
+            <td>
+                <select name="jquery">
+                    <option value="../node_modules/jquery/dist/jquery.js">3.2.1</option>
+                    <optgroup label="CDN">
+                        <option value="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">1.12.4</option>
+                        <option value="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js" >2.2.4 </option>
+                        <option value="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" >3.2.1 </option>
+                    </optgroup>
+                </select>
+            </td></tr>
         <tr><th>Use transpiler    </th><td><input name="transpiler"       value="1"         type="checkbox"   title="Use ES5 babel transpiler for tests"        />
                                             tests are written in ES6, check to compile into legacy JS( IE ). <br/>
                                             <i>Known issues:
                                                 <ul><li>transpiled test works only under development tools opened in IE (F12)</li>
                                                     <li><b>test-event</b> failed under transpiler,
-                                                        <a class="test-event">click</a> to test it alone without transpiler. </i></li>
+                                                        <a class="test-event">click</a> to test it alone without transpiler. </li>
+                                                    <li>IE in compatibility mode requires older jQuery</li>
                                                 </ul>
+                                            </i>
                                             The plugin itself does not need compilation. But you could need
                                             JS API update by using ES6 API
                                             <a href="../node_modules/babel-polyfill/dist/polyfill.min.js">polyfill</a>
@@ -51,7 +61,7 @@
 </form>
 
 
-<script>
+<script>/* <![CDATA[ */
 $(function()
 {
     $('input[name=initialBaseUrl]').val( location.pathname+'/../../' );
@@ -63,7 +73,7 @@ $(function()
         $('input[name=suite]').val('test/test-event');
     })
 });
-</script>
+/* ]]> */</script>
 <footer class="copy">Made in USA. Copyright &copy; Simulation Works, LLC 2014-2017</footer>
 </body>
 </html>

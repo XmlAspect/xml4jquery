@@ -11,14 +11,14 @@ define  ( ["require", 'intern!object', 'assert', 'xml4jquery' ]
         , function( require , registerSuite  ,  assert )
 {
     "use strict";
-    let $ = jQuery;
+    var $ = jQuery;
 
     return registerSuite(
     {   name    :    "Events"
     ,   "$on(click)": function()
         {
-            let d = this.async();
-            let $node = $("<a></a>")
+            var d = this.async();
+            var $node = $("<a></a>")
             ,   counter=0;
             $node.$on('click' ).$then( function(ev)
             {   counter++;
@@ -44,7 +44,7 @@ define  ( ["require", 'intern!object', 'assert', 'xml4jquery' ]
         }
     ,    "showcase": function()
         {
-            let counter = 0
+            var counter = 0
             ,   $el     = $("<a></a>");
             $el.$on( 'click' ).$then( function(ev){ console.log( counter++ ) && assert( 'click' === ev.type ) });
             return $el
