@@ -2,7 +2,7 @@
   "name": "xml4jquery",
   "version": "1.1.2",
   "description": "jQuery reactive plugin to supply XML, XPath and XSLT functionality.",
-  "main": "xml4jquery.js",
+  "browser": "xml4jquery.js",
   "directories": {
     "test": "test"
   },
@@ -30,11 +30,10 @@
     "url": "https://github.com/XmlAspect/xml4jquery/issues"
   },
   "homepage": "http://xml4jquery.com/",
+  "dependencies": {"jquery": "^3.2.1"},
   "devDependencies": {
     "babel-polyfill": "^6.23.0",
-    "google-closure-compiler": "~20170423.0.0",
     "intern": "^3.0.3",
-    "jquery": "^3.2.1",
     "requirejs": "^2.3.3",
     "types": "~0.1.1"
   }
