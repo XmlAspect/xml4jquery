@@ -18,7 +18,8 @@
     "xslt",
     "xpath",
     "reactive",
-    "jquery-plugin","ecosystem:jquery"
+    "jquery-plugin",
+    "ecosystem:jquery"
   ],
   "author": {
     "name": "Sasha Firsov",
@@ -30,11 +31,13 @@
     "url": "https://github.com/XmlAspect/xml4jquery/issues"
   },
   "homepage": "http://xml4jquery.com/",
-  "dependencies": {"jquery": "^3.2.1"},
+  "dependencies": {
+    "jquery": "^3.2.1"
+  },
   "devDependencies": {
-    "babel-polyfill": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
     "intern": "^3.0.3",
-    "requirejs": "^2.3.3",
+    "requirejs": "^2.3.5",
     "types": "~0.1.1"
   }
 }
